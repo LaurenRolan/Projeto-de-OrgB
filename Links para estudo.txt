@@ -1,0 +1,11 @@
+R
+- https://cran.r-project.org/web/packages/GA/GA.pdf
+
+Python
+- http://pyevolve.sourceforge.net/
+- http://pyevolve.sourceforge.net/getstarted.html#first-example
+- https://stat.ethz.ch/R-manual/R-devel/library/stats/html/embed.html
+- ftp://ftp.cea.fr/pub/unati/people/educhesnay/pystatml/StatisticsMachineLearningPythonDraft.pdf
+
+Scala
+- 
