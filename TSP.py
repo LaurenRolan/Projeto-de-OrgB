@@ -1,18 +1,32 @@
-#Código parcialmente retirado de ftp://ftp.cea.fr/pub/unati/people/educhesnay/pystatml/StatisticsMachineLearningPythonDraft.pdf
+#Codigo parcialmente retirado de:
+#ftp://ftp.cea.fr/pub/unati/people/educhesnay/pystatml/StatisticsMachineLearningPythonDraft.pdf
+#http://pyevolve.sourceforge.net/0_6rc1/examples.html
+
 import numpy as np
 import pandas as pd
-import pyevolve as pe
+from pyevolve import GAllele
+from pyevolve import GSimpleGA
+from pyevolve import G1DList
+import sys, random
+random.seed(1024)
 
-def eval_function(choromossome):
-    score = 0.0
-    tourLength = 0
-    #escrever função de eval
-    #embed?
-    #transformar em vetor?
-    score = 1/tourLength
-    return score;
+def tour_length(matrix, tour):
+   """ Retorna o tamanho total da rota escolhida """
+   total = 0
+   t = tour.getInternalList()
+   print(tour)
+   for i in range(21):
+      j      = (i+1)%20
+      total += matrix[t[i], t[j]]
+   return total
 
-# Pairwaise distance between european cities
+
+def G1DListTSPInitializator(genome, **args):
+    """ Inicializa lista com 21 numeros randomicos diferentes""""
+   lst = [i for i in xrange(genome.getListSize())]
+   random.shuffle(lst)
+   genome.setInternalList(lst)
+
 try:
     url = '../data/eurodist.csv'
     df = pd.read_csv(url)
@@ -20,18 +34,23 @@ except:
     url = 'https://raw.github.com/neurospin/pystatsml/master/data/eurodist.csv'
     df = pd.read_csv(url)
 
-print(df.ix[:5, :5])
 city = df["city"]
-D = np.array(df.ix[:, 1:]) # Distance matrix
+D = np.array(df.ix[:, 1:]) # matriz com as distancias
 
-#Resto do código:
-#Usar lista 2D? Sim!
-#Fazer o mesmo que em R!
+#Cria lista com 21 posicoes
+genome = G1DList.G1DList(21)
 
-genome = pe.G2DList.G2DList(21)
-genome.evaluator.set(eval_function)
-ga = pe.GSimpleGA.GSimpleGA(genome)
-ga.evolve(freq_stats=10)
+#Inicializa a lista
+genome.initializator.set(G1DListTSPInitializator)
 
+#Usa como metodo de avaliacao o tamanho da rota
+genome.evaluator.set(lambda chromosome: tour_length(D, chromosome))
+ga = GSimpleGA.GSimpleGA(genome)
+ga.setGenerations(700)
+ga.setMutationRate(0.2)
+ga.setPopulationSize(50)
+ga.evolve(freq_stats=200)
+
+print("And the best individual is...")
 
 print ga.bestIndividual()
