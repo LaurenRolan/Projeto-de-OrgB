@@ -9,6 +9,11 @@ Python
 
 Scala
 - 
+Java
+- http://jenetics.io/manual/manual-3.8.0.pdf
+- http://www.theprojectspot.com/tutorial-post/applying-a-genetic-algorithm-to-the-travelling-salesman-problem/5
+- https://github.com/stubbedtoe/Travelling-Salesman--a-Genetic-Algorithm/blob/master/TSP.java
+
 
 Misc
 - https://www.howtogeek.com/249966/how-to-install-and-use-the-linux-bash-shell-on-windows-10/
