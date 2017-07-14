@@ -7,6 +7,7 @@ import pandas as pd
 from pyevolve import GAllele
 from pyevolve import GSimpleGA
 from pyevolve import G1DList
+from pyevolve import Consts
 import sys, random
 random.seed(1024)
 
@@ -46,6 +47,7 @@ genome.initializator.set(G1DListTSPInitializator)
 #Usa como metodo de avaliacao o tamanho da rota
 genome.evaluator.set(lambda chromosome: tour_length(D, chromosome))
 ga = GSimpleGA.GSimpleGA(genome)
+ga.setMinimax(Consts.minimaxType["minimize"])
 ga.setGenerations(700)
 ga.setMutationRate(0.2)
 ga.setPopulationSize(50)
