@@ -23,10 +23,9 @@ def tour_length(matrix, tour):
 
 
 def G1DListTSPInitializator(genome, **args):
-    """ Inicializa lista com 21 numeros randomicos diferentes"""
-      lst = [i for i in xrange(genome.getListSize())]
-      random.shuffle(lst)
-      genome.setInternalList(lst)
+   lst = [i for i in xrange(genome.getListSize())]
+   random.shuffle(lst)
+   genome.setInternalList(lst)
 
 try:
    url = '../data/eurodist.csv'
