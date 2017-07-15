@@ -13,6 +13,7 @@ Java
 - http://jenetics.io/manual/manual-3.8.0.pdf
 - http://www.theprojectspot.com/tutorial-post/applying-a-genetic-algorithm-to-the-travelling-salesman-problem/5
 - https://github.com/stubbedtoe/Travelling-Salesman--a-Genetic-Algorithm/blob/master/TSP.java
+- https://github.com/jenetics/jenetics/blob/master/org.jenetics.example/src/main/java/org/jenetics/example/TravelingSalesman.java (Exemplo parecido com o que a gnt quer fazer)
 
 
 Misc
