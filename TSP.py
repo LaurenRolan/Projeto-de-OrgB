@@ -24,16 +24,16 @@ def tour_length(matrix, tour):
 
 def G1DListTSPInitializator(genome, **args):
     """ Inicializa lista com 21 numeros randomicos diferentes"""
-   lst = [i for i in xrange(genome.getListSize())]
-   random.shuffle(lst)
-   genome.setInternalList(lst)
+      lst = [i for i in xrange(genome.getListSize())]
+      random.shuffle(lst)
+      genome.setInternalList(lst)
 
 try:
-    url = '../data/eurodist.csv'
-    df = pd.read_csv(url)
+   url = '../data/eurodist.csv'
+   df = pd.read_csv(url)
 except:
-    url = 'https://raw.github.com/neurospin/pystatsml/master/data/eurodist.csv'
-    df = pd.read_csv(url)
+   url = 'https://raw.github.com/neurospin/pystatsml/master/data/eurodist.csv'
+   df = pd.read_csv(url)
 
 city = df["city"]
 D = np.array(df.ix[:, 1:]) # matriz com as distancias
