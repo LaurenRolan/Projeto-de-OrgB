@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 #Codigo parcialmente retirado de:
 #ftp://ftp.cea.fr/pub/unati/people/educhesnay/pystatml/StatisticsMachineLearningPythonDraft.pdf
 #http://pyevolve.sourceforge.net/0_6rc1/examples.html
