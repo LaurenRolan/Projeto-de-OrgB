@@ -5,7 +5,7 @@
 
 #include "../Headers/bTree.h"
 
-#define MAX_KEYS (1024)
+#define MAX_KEYS 10000
 
 struct btNode {
     int isLeaf;     /* is this a leaf node? */
