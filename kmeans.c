@@ -16,7 +16,7 @@
 
 void fail(char *str)
   {
-    printf(str);
+    printf("%s\n", str);
     exit(-1);
   }
   
