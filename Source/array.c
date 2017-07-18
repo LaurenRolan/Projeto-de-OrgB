@@ -8,12 +8,12 @@ int main(){
     int *array;
     int value;
     int i = 0, j;
-    FILE *numbers, *search;
+    FILE *numbers;
     array = (int*) malloc(sizeof(int)*MAX);
 
     if(array == NULL)
     {
-        printf("Vetor n„o foi inicializado.\n");
+        printf("Vetor n√£o foi inicializado.\n");
         return 1;
     }
 
@@ -29,19 +29,11 @@ int main(){
         fscanf(numbers, "%d", &array[i]);
         i++;
     }
-    fclose(numbers);
-
-    search = fopen("pesquisa.txt", "r");
-    if(search == NULL)
-    {
-        printf("Erro na abertura do arquivo com numeros para pesquisa.\n");
-        return 1;
-    }
-
-    i = 0;
+     i = 0;
     while (i < SEARCH)
     {
-        fscanf(search, "%d", &value);
+        fscanf(numbers, "%d", &value);
+        printf("%d", value);
         for(j = 0; j < MAX; j++){
             if(value == array[j]) break;
             else if(j == MAX - 1) {
@@ -51,5 +43,7 @@ int main(){
         }
         i++;
     }
+    fclose(numbers);
     printf("Processo concluido com sucesso.\n");
+    return 0;
 }
