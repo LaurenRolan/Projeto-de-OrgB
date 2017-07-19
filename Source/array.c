@@ -27,10 +27,10 @@ int main(){
     }
     i = 0;
     for(i = 0; i < SEARCH; i++){
-        value = array[(rand()%MAX)];
-        for(j = 0; j < MAX; j++){
+        value = array[(rand()%MAX_SIZE)];
+        for(j = 0; j < MAX_SIZE; j++){
             if(value == array[j]) break;
-            else if(j == MAX - 1) {
+            else if(j == MAX_SIZE - 1) {
                 printf("Erro na leitura do array.\n");
                 return -1;
             }
