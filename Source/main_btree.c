@@ -23,6 +23,7 @@ int main(){
     for(i = 0; i < MAX_SIZE; i++){ //gera números aleatórios
         r = (rand()%MAX_VALUE)+1;
         array[i] = r;
+        btInsert(bt, r);
     }
     i = 0;
     for(i = 0; i < SEARCH; i++){
