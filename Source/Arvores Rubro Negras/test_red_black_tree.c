@@ -34,47 +34,36 @@ void InfoDest(void *a){
 int main()
 {
   int i =0;
-  int value, j;
   srand(time(NULL));   // should only be called once
-  unsigned int r;
+  int *newInt;
   int *array;
+  int value;
   array = (int*) malloc(sizeof(int)*MAX_SIZE);
-	
+  newInt = (int*) malloc(sizeof(int*));	
    if(array == NULL)
    {
-        printf("Vetor não foi inicializado.\n");
+        printf("Vetor nao foi inicializado.\n");
         return 1;
    }
-	
-  //FILE *arq;
+  if(newInt == NULL)
+   {
+        printf("Int nao foi inicializado.\n");
+        return 1;
+   }	
   rb_red_blk_node* newNode;
   rb_red_blk_tree* tree;
 
   /*cria a arvore*/
   tree=RBTreeCreate(IntComp,IntDest,InfoDest,IntPrint,InfoPrint);
-  /*arq = fopen("file.txt", "r");
-  if(arq == NULL)
-  {
-    printf("Erro na abertura dos numeros\n");
-  }*/
-
-
+  
  /*insercao na arvore*/
   for(i = 0; i < MAX_SIZE; i++){ //gera números aleatórios
-        r = (rand()%MAX_VALUE)+1;
-        array[i] = r;
-        RBTreeInsert(tree, &r, (void*)1);
+	newInt=(int*) malloc(sizeof(int));
+        *newInt = (rand()%MAX_VALUE)+1;
+        array[i] = *newInt;
+        RBTreeInsert(tree, newInt, (void*)1);
   }
-	/*
-  while(i<MAX_SIZE)
-  {
-    newInt=(int*) malloc(sizeof(int));
-    fscanf(arq, "%d", newInt);
-    printf("%d - ", *newInt);
-    
-    i++;
-  }
-	*/
+	
   for(i = 0; i < SEARCH; i++){
         value = array[(rand()%MAX_SIZE)];
         if(( newNode = RBExactQuery(tree, &value) ) == NULL) {
@@ -82,23 +71,6 @@ int main()
                 return -1;
         }
   }
-	/*
-  while(i<MAX_PESQUISA)
-  {	
-    newInt=(int*) malloc(sizeof(int));
-    fscanf(arq, "%d", newInt);
-    printf("%d - ", *newInt);
-    if ( ( newNode = RBExactQuery(tree,newInt) ) != NULL) {assignment
-      printf("data found in tree at location %i\n",(int)newNode);
-    } else {
-      printf("data not in tree\n");
-    }
-	i++;
-  }
-
-  fclose(arq);
- */   
-   /* RBTreePrint(tree);*/
-	printf("Processo concluido com sucesso.\n");
-    return 0;
+  printf("Processo concluido com sucesso.\n");
+  return 0;
 }
