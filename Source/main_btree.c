@@ -1,39 +1,37 @@
 #include "../Headers/bTree.h"
 #include <stdlib.h>
 #include <time.h>
-#define MAX 10000
+#define MAX_SIZE 10000
 #define SEARCH 1000
+#define MAX_VALUE 2000
 
 int main(){
     bTree bt = btCreate();
-    FILE *numbers;
-    int value, i = 0;
+    int value, i = 0, j;
+    long unsigned int count;
+    srand(time(NULL));   // should only be called once
+    unsigned int r;
+    int *array;
+    array = (int*) malloc(sizeof(int)*MAX_SIZE);
 
-    numbers = fopen("file.txt", "r");
-    if(numbers == NULL)
+     if(array == NULL)
     {
-        printf("Erro na abertura do arquivo com numeros.\n");
+        printf("Vetor não foi inicializado.\n");
         return 1;
     }
 
-    while (i < MAX)
-    {
-        fscanf(numbers, "%d", &value);
-        btInsert(bt, value);
-        i++;
+    for(i = 0; i < MAX_SIZE; i++){ //gera números aleatórios
+        r = (rand()%MAX_VALUE)+1;
+        array[i] = r;
     }
-
     i = 0;
-    while (i < SEARCH)
-    {
-        fscanf(numbers, "%d", &value);
+    for(i = 0; i < SEARCH; i++){
+        value = array[(rand()%MAX_SIZE)];
         if(!btSearch(bt, value)) {
                 printf("Erro ao pesquisar na arvore.\n");
                 return -1;
         }
-        i++;
     }
-    fclose(numbers);
 
     printf("Processo concluido com sucesso.\n");
 
