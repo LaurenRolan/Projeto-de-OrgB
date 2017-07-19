@@ -19,5 +19,6 @@ int main(){
         fprintf(f, "%d ", r);
     }
     printf("Processo concluido com sucesso.\n");
+    fclose(f);
     return 0;
 }
