@@ -19,7 +19,7 @@ int main(){
         return 1;
     }
 
-    numbers = fopen("file.txt", "r");
+    numbers = fopen("file.txt", "r+");
     if(numbers == NULL)
     {
         printf("Erro na abertura do arquivo com numeros.\n");
@@ -31,23 +31,9 @@ int main(){
         fscanf(numbers, "%d", &array[i]);
         i++;
     }
-    fclose(numbers);
-
-   numbers = fopen("file.txt", "r");
-    if(numbers == NULL)
-    {
-        printf("Erro na abertura do arquivo com numeros.\n");
-        return 1;
-    }
-
-    while (i < MAX)
-    {
-        fscanf(numbers, "%d", &array[i]);
-        i++;
-    }
-    fclose(numbers);
-
-    numbers = fopen("file.txt", "a");
+   // fclose(numbers);
+    
+    //numbers = fopen("file.txt", "a");
     for(i = 0; i < SEARCH; i++){
         value = (rand()%MAX);
         fprintf(numbers, "%d ", array[value]);
