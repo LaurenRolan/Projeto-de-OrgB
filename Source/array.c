@@ -2,14 +2,18 @@
 #include <stdlib.h>
 #include <time.h>
 
-#define MAX 10000
+#define MAX_SIZE 10000
 #define SEARCH 1000
+#define MAX_VALUE 2000
+
 int main(){
+    long unsigned int count;
+    srand(time(NULL));   // should only be called once
+    unsigned int r;
     int *array;
     int value;
     int i = 0, j;
-    FILE *numbers;
-    array = (int*) malloc(sizeof(int)*MAX);
+    array = (int*) malloc(sizeof(int)*MAX_SIZE);
 
     if(array == NULL)
     {
@@ -17,23 +21,13 @@ int main(){
         return 1;
     }
 
-    numbers = fopen("file.txt", "r");
-    if(numbers == NULL)
-    {
-        printf("Erro na abertura do arquivo com numeros.\n");
-        return 1;
+    for(i = 0; i < MAX_SIZE; i++){
+        r = (rand()%MAX_VALUE)+1;
+        array[i] = r;
     }
-
-    while (i < MAX)
-    {
-        fscanf(numbers, "%d", &array[i]);
-        i++;
-    }
-     i = 0;
-    while (i < SEARCH)
-    {
-        fscanf(numbers, "%d", &value);
-        printf("%d", value);
+    i = 0;
+    for(i = 0; i < SEARCH; i++){
+        value = array[(rand()%MAX)];
         for(j = 0; j < MAX; j++){
             if(value == array[j]) break;
             else if(j == MAX - 1) {
@@ -41,9 +35,7 @@ int main(){
                 return -1;
             }
         }
-        i++;
     }
-    fclose(numbers);
     printf("Processo concluido com sucesso.\n");
     return 0;
 }
