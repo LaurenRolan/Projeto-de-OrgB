@@ -10,12 +10,12 @@ int main(){
     int value;
     int i = 0;
     srand(time(NULL));
-    FILE *numbers, *search;
+    FILE *numbers;
     array = (int*) malloc(sizeof(int)*MAX);
 
     if(array == NULL)
     {
-        printf("Vetor n„o foi inicializado.\n");
+        printf("Vetor n√£o foi inicializado.\n");
         return 1;
     }
 
@@ -33,17 +33,26 @@ int main(){
     }
     fclose(numbers);
 
-    search = fopen("pesquisa.txt", "w");
-    if(search == NULL)
+   numbers = fopen("file.txt", "r");
+    if(numbers == NULL)
     {
         printf("Erro na abertura do arquivo com numeros.\n");
         return 1;
     }
-    for(i = 0; i < SEARCH; i++){
-        valor = (rand()%SEARCH);
-        fprintf(search, "%d ", array[value]);
+
+    while (i < MAX)
+    {
+        fscanf(numbers, "%d", &array[i]);
+        i++;
     }
-    fclose(search);
+    fclose(numbers);
+
+    numbers = fopen("file.txt", "a");
+    for(i = 0; i < SEARCH; i++){
+        value = (rand()%MAX);
+        fprintf(numbers, "%d ", array[value]);
+    }
+    fclose(numbers);
     printf("Processo concluido com sucesso.\n");
     return 0;
 }
